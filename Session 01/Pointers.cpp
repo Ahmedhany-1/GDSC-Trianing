@@ -3,7 +3,9 @@ using namespace std;
 
 int main()
 {
-    
+    int a = 5;
+    int *x = &a;
+    cout << *x;
 }
 /* Session 1
     - Pointers
