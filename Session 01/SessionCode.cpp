@@ -10,3 +10,9 @@ int main()
     cout << "Your id is " << x;
     return 0;
 }
+/* Session 1 
+    - Pointers 
+    - Static allocation && Dynamic allocation 
+    - 
+
+*/
