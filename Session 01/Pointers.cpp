@@ -52,6 +52,7 @@ int main()
 
     */
 
+    //example : try to trace it !!
     int val1 = 5, val2 = 15;
     cout << &val1 << " " << &val2 << endl; // 0x23bdffdbc 0x23bdffdb8
     int *p1 = &val1, *p2 = nullptr;
