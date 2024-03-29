@@ -1,0 +1,1 @@
+cout << *ptr1 << end
