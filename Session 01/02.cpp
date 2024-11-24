@@ -1,24 +1,29 @@
-#include <vector>
 #include <iostream>
 using namespace std;
 
+struct emplyee {
+	string name;
+	int age;
+	double salary;
+	char gender;
+};
+
+const int MAX = 10000;
+
+emplyee emplyees_arr[MAX];
+int added = 0;	// Number of employees
+
+
 int main() {
-	int age = 55;
-	int &ref = age;
-	int another = 3;
+	emplyee first = { "mostafa", 10, 1200.5, 'M' };
+	emplyees_arr[added++] = first;
 
-	// can't re-assign it to a new address
-	//ref = &another;		WRONG
-
-	// Must be initialized to a declared variable
-	//int &ref2;		WRONG
-	//int &ref2 = 3;	WRONG
-
-	// Must be of same type
-	double val = 10;
-	//int &ref3 = val;	WRONG
-
-
+	emplyees_arr[added].name = "hani";
+	emplyees_arr[added].age = 55;
+	emplyees_arr[added].salary = 750;
+	emplyees_arr[added].gender = 'M';
+	added++;
 
 	return 0;
 }
+

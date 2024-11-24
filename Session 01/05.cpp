@@ -1,40 +1,46 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
-int main() {
+struct employee{
+    string name;
+    int age;
+    double salary;
 
-	int val1 = 5, val2 = 15;
+};
 
-// 0x21fd 0x7f12
-	cout << &val1 << " " << &val2 << "\n";
+bool compare_name(employee &a, employee &b) {
+    return a.name < b.name;	// smaller name first
+}
 
-	int * p1 = &val1, *p2;
-	p2 = &val2;
+bool compare_salary(employee &a, employee &b) {
+    return a.salary > b.salary;	// bigger salary salary
+}
 
-// [value pointed to by p1 = val1] = 10
-	*p1 = 10;
+bool compare_name_salary(employee &a, employee &b) {
+    // smaller name first, if tie smaller salary
+    if (a.name != b.name)
+        return a.name < b.name;
+    return a.salary < b.salary;
+}
 
-//  [value pointed to by p2 = val2] = [value pointed to by p1 = 16]
-	*p2 = *p1 + 6;
+void print_employee(employee *arr , int sz) {
+    for (int i = 0; i < sz; ++i) {
+        cout << arr[i].name << " his age is (" << arr[i].age  << ") has salary (" << arr[i].salary << ")\n";
+    }
+}
+int main(){
+    freopen("out.txt", "w", stdout);
 
-	cout << val1 << " " << val2 << "\n";	// 10 16
+    employee arr[4]{
+            {"Ali", 25 , 1000},
+            {"Zara", 30 , 2000},
+            {"Ali", 20,3000},
+            {"John", 35,5000}
+    };
 
-	p1 = p2;           // let p1 points to where p2 points = &val2
-// 0x7f12 0x7f12
-	cout << p1 << " " << p2 << "\n";
+    sort(arr , arr+4 , compare_name_salary);
+    print_employee(arr , 4);
 
-	*p1 = 20;          // value pointed to by p1 = 20
-
-	cout << val1 << " " << val2 << "\n";
-	cout << *p1 << " " << *p2 << "\n";
-
-	p1 = &val1;
-	cout << *p1 << " " << *p2 << "\n";	// 10 20
-	swap(p1, p2);
-	cout << *p1 << " " << *p2 << "\n";	// 20 10
-
-	double x = 10;
-	// p1 = &x;		// CE: cannot convert ‘double*’ to ‘int*’
-
-	return 0;
+    return 0;
 }

@@ -1,20 +1,47 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
+struct emplyee {
+	string name;
+	int age;
+	double salary;
+	char gender;
+
+    void read_employee() {
+        cout<<"Enter employee 4 entries: ";
+        cin >> name >> age;
+        cin >> salary >> gender;
+    }
+
+    void print(){
+        cout << name << " has salary :" << salary << '\n';
+    }
+
+    void setName(string newName){
+        name = newName;
+    }
+
+    string getName(){
+        return name;
+    }
+};
+
+const int MAX = 10000;
+
+emplyee emplyees_arr[MAX];
+int added = 0;	// Number of employees
+
+void print_employees() {
+    for (int i = 0; i < added; ++i)
+        print_employee(emplyees_arr[i]);
+}
+
+
 int main() {
+	emplyees_arr[added++].read_employee();
+	emplyees_arr[added++].read_employee();
 
-	double x = 10;
-	double* ptr1 = &x;
-
-	//double* ptr2 = NULL;	// C-style - OK
-
-	// C++11
-	double* ptr2 = nullptr;	// better [preferred]
-	double* ptr3 = 0;		// ok also nullptr
-	//double* ptre = 1;		// CE: 0 or address
-
-	double *ptr4;	// Garbage - DON'T
-
+	print_employees();
 	return 0;
 }
+

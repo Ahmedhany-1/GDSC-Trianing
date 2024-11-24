@@ -1,26 +1,21 @@
-#include <vector>
 #include <iostream>
 using namespace std;
 
-int main() {
-	int age = 55;
-	// 55 0x7ffd2db713a4
-	cout << age << " " << &age << "\n";
+int mul(int a, int b){
+    return a * b;
+}
 
-	int &ref1 = age;
-	// 55 0x7ffd2db713a4
-	cout << ref1 << " " << &ref1 << "\n";
+int mul(double a, double b){
+    return a * b;
+}
 
-	int &ref2 = ref1;
-	// 55 0x7ffd2db713a4
-	cout << ref2 << " " << &ref2 << "\n";
+int mul(int a, int b , int c){
+    return a * b * c;
+}
+int main(){
+    cout << mul(3, 4) << '\n';
+    cout << mul(3.0, 4.0) << '\n';
+    cout << mul(3, 4 , 1) << '\n';
 
-	// You can change value.
-	ref1 = 10;
-
-	// All variables pointing to same memory change
-	// 10 10 10
-	cout << age << " " << ref1 << " " << ref2 << "\n";
-
-	return 0;
+    return 0;
 }

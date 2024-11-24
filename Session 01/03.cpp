@@ -1,42 +1,47 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+struct emplyee {
+    string name;
+    int age;
+    double salary;
+    char gender;
+};
 
-	int val = 15;
-	int &ref = val;
+const int MAX = 10000;
 
-	// 15 0x7f1
-	cout << val << " " << &val << "\n";
-	// 15 0x7f1
-	cout << ref << " " << &ref << "\n";
+emplyee emplyees_arr[MAX];
+int added = 0;	// Number of employees
 
-	int *ptr = &val;
-	// 15 0x7f1 0x9f2
-	cout << *ptr << " " << ptr << " " << &ptr << "\n";
-
-	*ptr = 20;
-	// 20 20 20
-	cout << val << " " << ref << " " << *ptr << "\n";
-
-	int another = 30;
-	// 30 0x1afd
-	cout << another << " " << &another << "\n";
-
-	ptr = &another;
-	// 30 0x1afd 0x9f2       (0x9f2 did not change)
-	cout << *ptr << " " << ptr << " " << &ptr << "\n";
-
-	*ptr = 50;
-	// 20 50 50
-	cout << val << " " << another << " " << *ptr << "\n";
-
-	ptr = nullptr;	// point to nothing
-
-	if(!ptr)
-		cout<<"NULL\n";
-	// NULL
-
-
-	return 0;
+void read_employee(emplyee & e) {
+    cout << "Enter employee 4 entries: ";
+    cin >> e.name >> e.age;
+    cin >> e.salary >> e.gender;
 }
+
+void print_employee(emplyee & e) {
+    cout << e.name << " has salary " << e.salary << "\n";
+}
+
+void print_employees() {
+    for (int i = 0; i < added; ++i)
+        print_employee(emplyees_arr[i]);
+}
+
+
+int main() {
+    emplyee first = { "mostafa", 10, 1200.5, 'M' };
+    emplyees_arr[added++] = first;
+
+    emplyees_arr[added].name = "hani";
+    emplyees_arr[added].age = 55;
+    emplyees_arr[added].salary = 750;
+    emplyees_arr[added].gender = 'M';
+    added++;
+
+    read_employee(emplyees_arr[added++]);
+    read_employee(emplyees_arr[added++]);
+    print_employees();
+    return 0;
+}
+
